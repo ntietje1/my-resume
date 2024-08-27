@@ -25,6 +25,16 @@ jobs:
           name: resume-pdf
           path: ${{ secrets.NAME }}_Resume.pdf
 
+      - name: Commit to the output branch of repo
+        run: |
+          git config --global user.name "github-stats[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ${{ secrets.NAME }}_Resume.pdf
+          git commit -m 'temp commit' || echo
+          git checkout output 2>/dev/null || git checkout --orphan output && git rm -rf . && git checkout main -- ${{ secrets.NAME }}_Resume.pdf
+          git commit -m 'Update generated files' || echo
+          git push origin output -f
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
