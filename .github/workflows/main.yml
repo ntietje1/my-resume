@@ -43,4 +43,4 @@ jobs:
           role-session-name: github-oidc-session
 
       - name: Deploy to S3
-        run: aws s3 cp ${{ secrets.Name }}_Resume.pdf s3://tietje_resume_bucket/your_resume.pdf --acl public-read
+        run: aws s3 cp ${{ secrets.NAME }}_Resume.pdf s3://tietje_resume_bucket/${{ secrets.NAME }}_Resume.pdf --acl public-read
