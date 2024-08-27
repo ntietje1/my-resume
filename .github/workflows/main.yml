@@ -1,0 +1,46 @@
+name: Build and Deploy Resume
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install LaTeX
+        run: sudo apt-get update && sudo apt-get install -y texlive-full
+
+      - name: Build PDF
+        run: pdflatex resume.tex
+
+      - name: Upload PDF as an artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: resume-pdf
+          path: ${{ secrets.NAME }}_Resume.pdf
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download resume artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: resume-pdf
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::381492274117:role/github-actions-role
+          aws-region: us-east-1
+          role-session-name: github-oidc-session
+
+      - name: Deploy to S3
+        run: aws s3 cp ${{ secrets.Name }}_Resume.pdf s3://tietje_resume_bucket/your_resume.pdf --acl public-read
