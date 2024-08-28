@@ -9,6 +9,7 @@ env:
   TEX_FILE: Nicholas_Tietje_Resume.tex
   PDF_FILE: Nicholas_Tietje_Resume.pdf
   PREVIEW_IMAGE: Nicholas_Tietje_Resume_Preview.png
+  S3_BUCKET: tietje-resume-bucket
 
 jobs:
   build:
@@ -104,11 +105,9 @@ jobs:
           sudo apt-get install -y awscli
 
       - name: Upload PDF to S3
-        env:
-          S3_BUCKET: your-s3-bucket-name
-          S3_KEY: ${{ env.PDF_FILE }}
+        if: github.ref_name == 'main'
         run: |
           echo "Uploading PDF to S3..."
-          aws s3 cp ${{ env.PDF_FILE }} s3://tietje-resume-bucket/${{ env.PDF_FILE }}
+          aws s3 cp ${{ env.PDF_FILE }} s3://${{ env.S3_BUCKET }}/${{ env.PDF_FILE }}
           echo "Upload completed."
 
