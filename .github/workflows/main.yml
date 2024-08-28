@@ -35,18 +35,18 @@ jobs:
           name: resume-pdf
           path: Nicholas_Tietje_Resume.pdf
 
-      - name: Commit to the output branch of repo
-        run: |
-          echo "Configuring Git user..."
-          git config --global user.name "github-stats[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          echo "Adding generated PDF to Git..."
-          git add Nicholas_Tietje_Resume.pdf
-          git commit -m 'temp commit' || echo "No changes to commit."
-          git checkout output 2>/dev/null || git checkout --orphan output && git rm -rf . && git checkout main -- Nicholas_Tietje_Resume.pdf
-          git commit -m 'Update generated files' || echo "No changes to commit."
-          echo "Pushing changes to output branch..."
-          git push origin output -f
+      # - name: Commit to the output branch of repo
+      #   run: |
+      #     echo "Configuring Git user..."
+      #     git config --global user.name "github-stats[bot]"
+      #     git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      #     echo "Adding generated PDF to Git..."
+      #     git add Nicholas_Tietje_Resume.pdf
+      #     git commit -m 'temp commit' || echo "No changes to commit."
+      #     git checkout output 2>/dev/null || git checkout --orphan output && git rm -rf . && git checkout main -- Nicholas_Tietje_Resume.pdf
+      #     git commit -m 'Update generated files' || echo "No changes to commit."
+      #     echo "Pushing changes to output branch..."
+      #     git push origin output -f
 
   deploy:
     needs: build
