@@ -38,7 +38,15 @@ jobs:
             latex-enumitem \
             latex-tabularx \
             latex-babel-english \
-            latex-fontspec
+            latex-fontspec \
+            texlive-xcolor \
+            texlive-hyperref \
+            texlive-fancyhdr \
+            texlive-titlesec \
+            texlive-enumitem \
+            texlive-tabularx \
+            texlive-babel-english \
+            texlive-fontspec
 
       - name: Build PDF
         run: |
