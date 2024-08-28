@@ -22,7 +22,23 @@ jobs:
           echo "Updating package lists..."
           sudo apt-get update
           echo "Installing LaTeX..."
-          sudo apt-get install -y texlive-full
+          sudo apt-get install -y \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-fonts-extra \
+            texlive-lang-english \
+            texlive-xetex \
+            fonts-font-awesome \
+            latex-xcolor \
+            latex-hyperref \
+            latex-fancyhdr \
+            latex-titlesec \
+            latex-enumitem \
+            latex-tabularx \
+            latex-babel-english \
+            latex-fontspec
 
       - name: Build PDF
         run: |
@@ -48,7 +64,6 @@ jobs:
       #     git commit -m 'Update generated files' || echo "No changes to commit."
       #     echo "Pushing changes to output branch..."
       #     git push origin output -f
-      # test
 
   deploy:
     needs: build
