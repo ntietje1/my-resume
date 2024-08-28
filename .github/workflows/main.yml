@@ -5,9 +5,7 @@ on:
       - main
 
 env:
-  TEX_FILE: Nicholas_Tietje_Resume.tex
-  PDF_FILE: Nicholas_Tietje_Resume.pdf
-  PREVIEW_IMAGE: Nicholas_Tietje_Resume_Preview.png
+  BASE_NAME: Nicholas_Tietje_Resume
   S3_BUCKET: tietje-resume-bucket
 
 jobs:
@@ -38,23 +36,23 @@ jobs:
       - name: Build PDF
         run: |
           echo "Building PDF from LaTeX source..."
-          pdflatex ${{ env.TEX_FILE }}
-          echo "PDF built successfully: ${{ env.PDF_FILE }}"
+          pdflatex ${{ env.BASE_NAME }}.tex
+          echo "PDF built successfully: ${{ env.BASE_NAME }}.pdf"
 
       - name: Convert PDF to Image
         run: |
           echo "Converting first page of PDF to image..."
           sudo apt-get install -y poppler-utils
-          pdftoppm -png -f 1 -singlefile ${{ env.PDF_FILE }} ${{ env.PREVIEW_IMAGE }}
-          echo "Image generated: ${{ env.PREVIEW_IMAGE }}"
+          pdftoppm -png -f 1 -singlefile ${{ env.BASE_NAME }}.pdf ${{ env.BASE_NAME }}
+          echo "Image generated: ${{ env.BASE_NAME }}.png"
 
       - name: Upload PDF as an artifact
         uses: actions/upload-artifact@v3
         with:
           name: resume-pdf
           path: |
-            ${{ env.PDF_FILE }}
-            ${{ env.PREVIEW_IMAGE }}
+            ${{ env.BASE_NAME }}.pdf
+            ${{ env.BASE_NAME }}.png
 
       - name: Commit generated files to the generated folder
         run: |
@@ -66,11 +64,11 @@ jobs:
           mkdir -p generated
 
           echo "Moving generated files to the generated folder..."
-          mv ${{ env.PDF_FILE }} generated/
-          mv ${{ env.PREVIEW_IMAGE }} generated/
+          mv ${{ env.BASE_NAME }}.pdf generated/
+          mv ${{ env.BASE_NAME }}.png generated/
 
           echo "Adding generated files to Git..."
-          git add generated/${{ env.PDF_FILE }} generated/${{ env.PREVIEW_IMAGE }}
+          git add generated/${{ env.BASE_NAME }}.pdf generated/${{ env.BASE_NAME }}.png
 
           echo "Committing changes..."
           git commit -m 'Update generated files' || echo "No changes to commit."
@@ -107,5 +105,5 @@ jobs:
         if: github.ref_name == 'main'
         run: |
           echo "Uploading PDF to S3..."
-          aws s3 cp ${{ env.PDF_FILE }} s3://${{ env.S3_BUCKET }}/${{ env.PDF_FILE }}
+          aws s3 cp ${{ env.BASE_NAME }}.pdf s3://${{ env.S3_BUCKET }}/${{ env.BASE_NAME }}.pdf
           echo "Upload completed."
