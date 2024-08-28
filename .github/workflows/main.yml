@@ -3,9 +3,12 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
+
+
+env:
+  TEX_FILE: Nicholas_Tietje_Resume.tex
+  PDF_FILE: Nicholas_Tietje_Resume.pdf
+  PREVIEW_IMAGE: Nicholas_Tietje_Resume_Preview.png
 
 jobs:
   build:
@@ -35,36 +38,45 @@ jobs:
       - name: Build PDF
         run: |
           echo "Building PDF from LaTeX source..."
-          pdflatex Nicholas_Tietje_Resume.tex
-          echo "PDF built successfully: Nicholas_Tietje_Resume.pdf"
+          pdflatex ${{ env.TEX_FILE }}
+          echo "PDF built successfully: ${{ env.PDF_FILE }}"
 
       - name: Convert PDF to Image
         run: |
           echo "Converting first page of PDF to image..."
           sudo apt-get install -y poppler-utils
-          pdftoppm -png -f 1 -singlefile Nicholas_Tietje_Resume.pdf Nicholas_Tietje_Resume_preview
-          echo "Image generated: Nicholas_Tietje_Resume_preview.png"
+          pdftoppm -png -f 1 -singlefile ${{ env.PDF_FILE }} ${{ env.PREVIEW_IMAGE }}
+          echo "Image generated: ${{ env.PREVIEW_IMAGE }}"
 
       - name: Upload PDF as an artifact
         uses: actions/upload-artifact@v3
         with:
           name: resume-pdf
           path: |
-            Nicholas_Tietje_Resume.pdf
-            Nicholas_Tietje_Resume_preview.png
+            ${{ env.PDF_FILE }}
+            ${{ env.PREVIEW_IMAGE }}
 
-      - name: Commit to the generated branch of repo
-        run: |
-          echo "Configuring Git user..."
-          git config --global user.name "github-stats[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          echo "Adding generated PDF to Git..."
-          git add Nicholas_Tietje_Resume.pdf Nicholas_Tietje_Resume_preview.png
-          git commit -m 'temp commit' || echo "No changes to commit."
-          git checkout generated 2>/dev/null || git checkout --orphan generated && git rm -rf . && git checkout main -- Nicholas_Tietje_Resume.pdf Nicholas_Tietje_Resume_preview.png
-          git commit -m 'Update generated files' || echo "No changes to commit."
-          echo "Pushing changes to generated branch..."
-          git push origin generated -f
+      - name: Commit generated files to the generated folder
+      run: |
+        echo "Configuring Git user..."
+        git config --global user.name "github-stats[bot]"
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        
+        echo "Creating generated folder if it doesn't exist..."
+        mkdir -p generated
+        
+        echo "Moving generated files to the generated folder..."
+        mv ${{ env.PDF_FILE }} generated/
+        mv ${{ env.PREVIEW_IMAGE }} generated/
+        
+        echo "Adding generated files to Git..."
+        git add generated/${{ env.PDF_FILE }} generated/${{ env.PREVIEW_IMAGE }}
+        
+        echo "Committing changes..."
+        git commit -m 'Update generated files' || echo "No changes to commit."
+        
+        echo "Pushing changes to the repository..."
+        git push origin ${{ github.ref_name }}
 
   deploy:
     needs: build
@@ -94,21 +106,9 @@ jobs:
       - name: Upload PDF to S3
         env:
           S3_BUCKET: your-s3-bucket-name
-          S3_KEY: Nicholas_Tietje_Resume.pdf
+          S3_KEY: ${{ env.PDF_FILE }}
         run: |
           echo "Uploading PDF to S3..."
-          aws s3 cp Nicholas_Tietje_Resume.pdf s3://tietje-resume-bucket/Nicholas_Tietje_Resume.pdf
+          aws s3 cp ${{ env.PDF_FILE }} s3://tietje-resume-bucket/${{ env.PDF_FILE }}
           echo "Upload completed."
 
-    #   - name: Verify S3 Upload
-    #     env:
-    #       S3_BUCKET: your-s3-bucket-name
-    #       S3_KEY: Nicholas_Tietje_Resume.pdf
-    #     run: |
-    #       echo "Verifying upload to S3..."
-    #       if aws s3 ls s3://tietje-resume-bucket/Nicholas_Tietje_Resume.pdf; then
-    #         echo "File exists in S3."
-    #       else
-    #         echo "File does not exist in S3."
-    #         exit 1
-    #       fi
