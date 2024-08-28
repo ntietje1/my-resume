@@ -1,2 +1,11 @@
-# my-resume
-Versioning + automatic build &amp; deployment of my resume to S3
+# Automated Build and Deployment of My Resume
+This repository automates the process of building, previewing, and deploying my resume.
+
+## Features
+- **Build LaTeX to PDF:** Automatically compiles the LaTeX source file into a PDF document.
+- **Generate Image Preview:** Creates a PNG image preview of the resume.
+- **Push to Output Branch:** Commits and pushes the generated PDF and PNG files to the output branch.
+- **Upload to S3:** Uploads the PDF to an Amazon S3 bucket for easy access and sharing.
+
+## Preview
+![Resume Preview](https://github.com/ntietje1/my-resume/blob/13c30dd9f74fb23ab2a454deec130a2cc18af02b/Nicholas_Tietje_Resume_preview.png)
