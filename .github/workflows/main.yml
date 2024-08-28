@@ -4,7 +4,6 @@ on:
     branches:
       - main
 
-
 env:
   TEX_FILE: Nicholas_Tietje_Resume.tex
   PDF_FILE: Nicholas_Tietje_Resume.pdf
@@ -58,26 +57,26 @@ jobs:
             ${{ env.PREVIEW_IMAGE }}
 
       - name: Commit generated files to the generated folder
-      run: |
-        echo "Configuring Git user..."
-        git config --global user.name "github-stats[bot]"
-        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        
-        echo "Creating generated folder if it doesn't exist..."
-        mkdir -p generated
-        
-        echo "Moving generated files to the generated folder..."
-        mv ${{ env.PDF_FILE }} generated/
-        mv ${{ env.PREVIEW_IMAGE }} generated/
-        
-        echo "Adding generated files to Git..."
-        git add generated/${{ env.PDF_FILE }} generated/${{ env.PREVIEW_IMAGE }}
-        
-        echo "Committing changes..."
-        git commit -m 'Update generated files' || echo "No changes to commit."
-        
-        echo "Pushing changes to the repository..."
-        git push origin ${{ github.ref_name }}
+        run: |
+          echo "Configuring Git user..."
+          git config --global user.name "github-stats[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          echo "Creating generated folder if it doesn't exist..."
+          mkdir -p generated
+
+          echo "Moving generated files to the generated folder..."
+          mv ${{ env.PDF_FILE }} generated/
+          mv ${{ env.PREVIEW_IMAGE }} generated/
+
+          echo "Adding generated files to Git..."
+          git add generated/${{ env.PDF_FILE }} generated/${{ env.PREVIEW_IMAGE }}
+
+          echo "Committing changes..."
+          git commit -m 'Update generated files' || echo "No changes to commit."
+
+          echo "Pushing changes to the repository..."
+          git push origin ${{ github.ref_name }}
 
   deploy:
     needs: build
@@ -110,4 +109,3 @@ jobs:
           echo "Uploading PDF to S3..."
           aws s3 cp ${{ env.PDF_FILE }} s3://${{ env.S3_BUCKET }}/${{ env.PDF_FILE }}
           echo "Upload completed."
-
