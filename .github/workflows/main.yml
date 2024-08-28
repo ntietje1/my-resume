@@ -80,7 +80,7 @@ jobs:
           S3_KEY: Nicholas_Tietje_Resume.pdf
         run: |
           echo "Uploading PDF to S3..."
-          aws s3 cp Nicholas_Tietje_Resume.pdf s3://tietje-resume-bucket/Nicholas_Tietje_Resume.pdf --acl public-read
+          aws s3 cp Nicholas_Tietje_Resume.pdf s3://tietje-resume-bucket/Nicholas_Tietje_Resume.pdf
           echo "Upload completed."
 
       - name: Verify S3 Upload
