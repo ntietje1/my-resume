@@ -8,4 +8,4 @@ This repository automates the process of building, previewing, and deploying my 
 - **Upload to S3:** Uploads the PDF to an Amazon S3 bucket for easy access and sharing.
 
 ## Preview
-![Resume Preview](https://github.com/ntietje1/my-resume/blob/13c30dd9f74fb23ab2a454deec130a2cc18af02b/Nicholas_Tietje_Resume_preview.png)
+![Resume Preview](https://github.com/ntietje1/my-resume/blob/generated/Nicholas_Tietje_Resume_preview.png)
