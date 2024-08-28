@@ -52,10 +52,10 @@ jobs:
           echo "Adding generated PDF to Git..."
           git add Nicholas_Tietje_Resume.pdf
           git commit -m 'temp commit' || echo "No changes to commit."
-          git checkout output 2>/dev/null || git checkout --orphan output && git rm -rf . && git checkout main -- Nicholas_Tietje_Resume.pdf
+          git checkout generated 2>/dev/null || git checkout --orphan generated && git rm -rf . && git checkout main -- Nicholas_Tietje_Resume.pdf
           git commit -m 'Update generated files' || echo "No changes to commit."
-          echo "Pushing changes to output branch..."
-          git push origin output -f
+          echo "Pushing changes to generated branch..."
+          git push origin generated -f
 
   deploy:
     needs: build
