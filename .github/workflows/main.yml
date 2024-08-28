@@ -38,11 +38,20 @@ jobs:
           pdflatex Nicholas_Tietje_Resume.tex
           echo "PDF built successfully: Nicholas_Tietje_Resume.pdf"
 
+      - name: Convert PDF to Image
+        run: |
+          echo "Converting first page of PDF to image..."
+          sudo apt-get install -y poppler-utils
+          pdftoppm -png -f 1 -singlefile Nicholas_Tietje_Resume.pdf Nicholas_Tietje_Resume_preview
+          echo "Image generated: Nicholas_Tietje_Resume_preview.png"
+
       - name: Upload PDF as an artifact
         uses: actions/upload-artifact@v3
         with:
           name: resume-pdf
-          path: Nicholas_Tietje_Resume.pdf
+          path: |
+            Nicholas_Tietje_Resume.pdf
+            Nicholas_Tietje_Resume_preview.png
 
       - name: Commit to the generated branch of repo
         run: |
@@ -50,9 +59,9 @@ jobs:
           git config --global user.name "github-stats[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           echo "Adding generated PDF to Git..."
-          git add Nicholas_Tietje_Resume.pdf
+          git add Nicholas_Tietje_Resume.pdf Nicholas_Tietje_Resume_preview.png
           git commit -m 'temp commit' || echo "No changes to commit."
-          git checkout generated 2>/dev/null || git checkout --orphan generated && git rm -rf . && git checkout main -- Nicholas_Tietje_Resume.pdf
+          git checkout generated 2>/dev/null || git checkout --orphan generated && git rm -rf . && git checkout main -- Nicholas_Tietje_Resume.pdf Nicholas_Tietje_Resume_preview.png
           git commit -m 'Update generated files' || echo "No changes to commit."
           echo "Pushing changes to generated branch..."
           git push origin generated -f
