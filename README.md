@@ -13,4 +13,4 @@ This repository automates the process of building, previewing, and deploying my 
 [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ntietje1/my-resume/blob/generated/Nicholas_Tietje_Resume.pdf)
 
 ## Preview
-![Resume Preview](https://github.com/ntietje1/my-resume/blob/generated/Nicholas_Tietje_Resume_preview.png)
+[![Resume Preview](https://github.com/ntietje1/my-resume/blob/generated/Nicholas_Tietje_Resume_preview.png)](https://tietje-resume-bucket.s3.amazonaws.com/Nicholas_Tietje_Resume.pdf)
