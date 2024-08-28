@@ -44,7 +44,7 @@ jobs:
           name: resume-pdf
           path: Nicholas_Tietje_Resume.pdf
 
-      - name: Commit to the output branch of repo
+      - name: Commit to the generated branch of repo
         run: |
           echo "Configuring Git user..."
           git config --global user.name "github-stats[bot]"
