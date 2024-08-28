@@ -68,3 +68,30 @@ jobs:
           role-to-assume: arn:aws:iam::381492274117:role/github-actions-role
           aws-region: us-east-1
           role-session-name: github-oidc-session
+
+      - name: Install AWS CLI
+        run: |
+          echo "Installing AWS CLI..."
+          sudo apt-get install -y awscli
+
+      - name: Upload PDF to S3
+        env:
+          S3_BUCKET: your-s3-bucket-name
+          S3_KEY: Nicholas_Tietje_Resume.pdf
+        run: |
+          echo "Uploading PDF to S3..."
+          aws s3 cp Nicholas_Tietje_Resume.pdf s3://tietje-resume-bucket/Nicholas_Tietje_Resume.pdf --acl public-read
+          echo "Upload completed."
+
+      - name: Verify S3 Upload
+        env:
+          S3_BUCKET: your-s3-bucket-name
+          S3_KEY: Nicholas_Tietje_Resume.pdf
+        run: |
+          echo "Verifying upload to S3..."
+          if aws s3 ls s3://tietje-resume-bucket/Nicholas_Tietje_Resume.pdf; then
+            echo "File exists in S3."
+          else
+            echo "File does not exist in S3."
+            exit 1
+          fi
