@@ -1,0 +1,265 @@
+\documentclass[letterpaper,11pt]{article}
+
+%----------PACKAGES----------
+
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}    
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{fix-cm}    
+\input{glyphtounicode}
+
+%----------FONT OPTIONS----------
+
+\usepackage[default]{sourcesanspro}
+
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-0.6in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-15pt}\scshape\raggedright\Large
+}{}{0em}{\vspace{-2pt}}[\color{black}\titlerule \vspace{-4pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+% Itemize formatting
+\setlist[itemize]{leftmargin=*}
+
+%---------- CUSTOM COMMANDS ----------
+
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2.pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-3pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \vspace{-2pt}
+      \textbf{#1} & \textit{#2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubheadingDouble}[6]{
+  \vspace{-3pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \vspace{-2pt}
+      \textbf{#1} & \textit{#2} \\
+      \vspace{-1pt}
+      \textit{\small#3} & \textit{\small #4} \\
+      \textit{\small#5} & \textit{\small #6} \\ 
+    \end{tabular*}\vspace{-5pt}
+}
+
+% \newcommand{\resumeSubheading}[4]{
+%   \vspace{-3pt}\item
+%     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+%       \textbf{#1} & #2 \\
+%       \textit{\small#3} & \textit{\small #4} \\
+%     \end{tabular*}\vspace{-7pt}
+% }
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+
+\begin{center}
+    \textbf{\Huge \scshape Nicholas Tietje} \\ \vspace{5pt}
+    \href{https://github.com/ntietje1}{\raisebox{-0.05\height}\faGithub\ ntietje1} \ \tab[0.5cm] \ 
+    \href{https://www.linkedin.com/in/nicholas-tietje/}{\raisebox{-0.05\height}\faLinkedin\ nicholas-tietje} \ \tab[0.5cm] \ 
+    \href{mailto:tietje.n@northeastern.edu}{\raisebox{-0.05\height}\faEnvelope \ tietje.n@northeastern.edu} \ \tab[0.5cm] \ 
+    \href{tel:443-204-0501}{\raisebox{-0.05\height}\faMobile \ (443) 204-0501} \
+    \vspace{-2pt}
+\end{center}
+
+%-----------EDUCATION-----------
+
+\section{\textbf{Education}}
+  \resumeSubHeadingListStart
+    \resumeSubheadingDouble
+      {Northeastern University}{Boston, MA}
+      {Master of Science in Computer Science}{Expected May 2026}
+      {Bachelor of Science in Computer Science and Chemical Engineering}{Expected May 2025}
+      \resumeItemListStart
+            % \resumeItem{\textbf{GPA:} 3.8/4.0}
+            \resumeItem{\textbf{Activities \& Honors:} GPA 3.8/4.0, ChemE Car, CoMoChEng, AIChE, NUAGE, Dean's List, Dean's Scholar}
+            \resumeItem{\textbf{Relevant Coursework:} Foundations of Software Engineering, Software Development, Mobile Application Development, Object Oriented Design, Algorithms \& Data, Database Design, Fundamentals of Computer Science I \& II}
+            % Thermodynamics I \& II, Transport Processes I \& II, Physics II, Conservation Principles of Chemical Engineering, 
+      \resumeItemListEnd
+      \vspace{1pt}
+  \resumeSubHeadingListEnd
+
+%-----------INTERNSHIP EXPERIENCE-----------
+
+\section{\textbf{Internship Experience}}
+  \resumeSubHeadingListStart
+
+\resumeSubheading
+      {Software Engineer Intern}{Boston, MA}
+      {State Street}{Jul 2024 -- Present}
+      \resumeItemListStart
+        \resumeItem{Architected and implemented a scalable notification management system as a full-stack SaaS product for State Street, enhancing communication efficiency of 3000+ users} across multiple departments
+        \resumeItem{Collaborated with cross-functional teams to gather requirements, ensuring alignment with diverse user needs and strict financial industry compliance standards}
+    
+      \resumeItemListEnd
+    \vspace{1pt}
+    
+    \resumeSubheading
+      {Inks and Coatings Engineering Internship}{Boston, MA}
+      {Nano-C}{Jul 2023 -- Dec 2023}
+      \resumeItemListStart
+        \resumeItem{Optimized techniques for surfactant-free Single Walled Carbon Nanotube inks, improving R/T performance by 11\%}
+        \resumeItem{Developed novel chemical separation and purification methods to drive product refinement}
+      \resumeItemListEnd
+    \vspace{1pt}
+
+  \resumeSubHeadingListEnd
+
+%-----------CAMPUS EXPERIENCE-----------
+
+\section{\textbf{Campus Experience}}
+  \resumeSubHeadingListStart
+
+  % \resumeSubheading
+  %     {Reaction Mechanism Generator (RMG-Py) \tab[0.5cm] \href{https://github.com/ntietje1/RMG-Py}{\raisebox{-0.05\height}\faGithub \tab[0.05cm] Github} \tab[0.5cm] \href{https://rmg.mit.edu/}{\raisebox{-0.05\height}\faGlobeAmericas \tab[0.05cm] Website}}{}
+  %     {Python, Anaconda, Docker, Linux, Pytest}{}
+  %     \resumeItemListStart
+  %       \resumeItem{Contributed to \textbf{open-source scientific software} as part of Computational Modeling in Chemical Engineering at Northeastern (CoMoChEng) by implementing code optimizations and feature development}
+  %       \resumeItem{Led \textbf{migration of output file format to YAML}, improving cross-application interoperability}
+  %       \resumeItem{Optimized data processing pipelines, achieving up to \textbf{50\% reduction in execution time} through efficient string templating and file I/O operations}
+  %     \resumeItemListEnd
+
+  %       \vspace{2pt}
+
+\resumeSubheading
+      {Undergraduate Researcher}{Boston, MA}
+      {Computational Modeling in Chemical Engineering at Northeastern University}{Feb 2024 -- Jul 2024}
+      \resumeItemListStart
+        \resumeItem{Contributed to RMG-Py, an open-source scientific software by implementing code optimizations and feature development}
+        \resumeItem{Led migration of output file format to YAML, improving cross-application interoperability}
+        \resumeItem{Implemented efficient string and file handling techniques, achieving up to 50\% reduction in execution time}
+      \resumeItemListEnd
+    \vspace{1pt}
+
+    \resumeSubheading
+      {Khoury Teaching Assistant}{Boston, MA}
+      {Northeastern University}{Jan 2024 -- May 2024}
+      \resumeItemListStart
+        \resumeItem{Mentored cohort of 250+ students in CS 3200 Database Design, providing technical support via Piazza and office hours}
+        \resumeItem{Evaluated assignments, labs, and exams, offering constructive feedback to enhance student learning outcomes}
+      \resumeItemListEnd
+    \vspace{1pt}
+
+    \resumeSubheading
+      {FYELIC Teaching Assistant}{Boston, MA}
+      {Northeastern University}{Sep 2022 -- May 2023}
+      \resumeItemListStart
+        \resumeItem{Guided 200+ students in C++ programming and electrical prototyping for the Cornerstone of Engineering course}
+        \resumeItem{Managed and maintained advanced fabrication equipment including 3D printers, laser-cutters, and woodworking machinery}
+      \resumeItemListEnd
+    \vspace{1pt}
+\resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+
+\section{\textbf{Projects}}
+  \resumeSubHeadingListStart
+       \resumeSubheading
+      {LifeLinked: A MTG Life Tracking App \tab[0.5cm] \href{https://github.com/ntietje1/MTG_Life_Total_App}{\raisebox{-0.05\height}\faGithub \tab[0.05cm] Github}\tab[0.5cm] \href{https://play.google.com/store/apps/details?id=com.hypeapps.lifelinked}{\raisebox{-0.05\height}\faGooglePlay \tab[0.05cm] Google Play}\tab[0.5cm] \href{https://apps.apple.com/us/app/lifelinked-mtg-life-counter/id6503708612}{\raisebox{-0.05\height}\faApple \tab[0.05cm] App Store}}{}
+      {Kotlin Multiplatform, Java, Gradle, Jetpack Compose, Android Studio, XCode}{}
+      \resumeItemListStart
+        \resumeItem{Engineered and launched a cross-platform mobile app, attracting over 500 active users on Google Play and App Store}
+        \resumeItem{Leveraged Compose Multiplatform to share both native UI and back-end logic between iOS and Android platforms}
+        \resumeItem{Adhered to Android/iOS design and quality standards by performing beta testing and applying clean architecture techniques}
+      \resumeItemListEnd
+        \vspace{1pt}
+
+    \resumeSubheading
+      {Huskerly: A Real-Time Messaging App \tab[0.5cm] \href{https://github.com/kennybc/huskerly-microservices}{\raisebox{-0.05\height}\faGithub \tab[0.05cm] Github (Back End)} \tab[0.5cm] \href{https://github.com/nandini-ghosh/huskerly-react-app}{\raisebox{-0.05\height}\faGithub \tab[0.05cm] Github (Front End)}}{}
+      {Python, Javascript, React, RESTful APIs, Websockets, MySQL, Terraform, Kubernetes, EKS, RDS, DynamoDB, S3}{}
+      \resumeItemListStart
+        \resumeItem{Architected and developed a feature-rich real-time messaging platform with organization management, channels, direct messaging, and OAuth 2.0 authentication}
+        \resumeItem{Designed and deployed a microservice-based cloud application with Kubernetes on AWS EKS to efficiently handle varying workloads and ensure high availability and reliability}
+      \vspace{1pt}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+  %-----------PROGRAMMING SKILLS-----------
+
+\section{\textbf{Technical Skills}}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Programming Languages:} \tab[1.98cm] {Kotlin, Java, Python, JavaScript, C++, SQL, PostgreSQL} \\
+     \vspace{3pt}
+     \textbf{Tools/Frameworks:} \tab[2.975cm] {Git, Github Actions, Docker, Kubernetes, Express, MongoDB, React, Gradle, REST APIs} \\
+     \vspace{3pt}
+     \textbf{Cloud Technologies:} \tab[2.85cm] {AWS (EC2, RDS, EKS, S3, DynamoDB, Lambda, IAM, Cognito, API Gateway), Terraform} \\
+     \vspace{1pt}
+    }}
+ \end{itemize}
+ 
+\section{\textbf{Interests}}
+\begin{itemize}[leftmargin=0.15in, label={}]
+\item{
+    \resumeItemListStart
+        \resumeItem{Magic: The Gathering, Kotlin, Reading (Sci-fi \& Fantasy), Board Games, Learning Spanish (650 day streak on Duolingo!)}
+    \resumeItemListEnd
+}
+\end{itemize}
+
+%-------------------------------------------
+\end{document}
