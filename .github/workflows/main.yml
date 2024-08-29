@@ -1,0 +1,109 @@
+name: Build and Deploy Resume
+on:
+  push:
+    branches:
+      - main
+
+env:
+  BASE_NAME: Nicholas_Tietje_Resume
+  S3_BUCKET: tietje-resume-bucket
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Install LaTeX
+        run: |
+          echo "Updating package lists..."
+          sudo apt-get update
+          echo "Installing LaTeX..."
+          sudo apt-get install -y \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-fonts-extra \
+            texlive-lang-english \
+            texlive-xetex \
+            fonts-font-awesome
+
+      - name: Build PDF
+        run: |
+          echo "Building PDF from LaTeX source..."
+          pdflatex ${{ env.BASE_NAME }}.tex
+          echo "PDF built successfully: ${{ env.BASE_NAME }}.pdf"
+
+      - name: Convert PDF to Image
+        run: |
+          echo "Converting first page of PDF to image..."
+          sudo apt-get install -y poppler-utils
+          pdftoppm -png -f 1 -singlefile ${{ env.BASE_NAME }}.pdf ${{ env.BASE_NAME }}
+          echo "Image generated: ${{ env.BASE_NAME }}.png"
+
+      - name: Upload PDF as an artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: resume-pdf
+          path: |
+            ${{ env.BASE_NAME }}.pdf
+            ${{ env.BASE_NAME }}.png
+
+      - name: Commit generated files to the generated folder
+        run: |
+          echo "Configuring Git user..."
+          git config --global user.name "github-stats[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          echo "Creating generated folder if it doesn't exist..."
+          mkdir -p generated
+
+          echo "Moving generated files to the generated folder..."
+          mv ${{ env.BASE_NAME }}.pdf generated/
+          mv ${{ env.BASE_NAME }}.png generated/
+
+          echo "Adding generated files to Git..."
+          git add generated/${{ env.BASE_NAME }}.pdf generated/${{ env.BASE_NAME }}.png
+
+          echo "Committing changes..."
+          git commit -m 'Update generated files' || echo "No changes to commit."
+
+          echo "Pushing changes to the repository..."
+          git push origin ${{ github.ref_name }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Download resume artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: resume-pdf
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::381492274117:role/github-actions-role
+          aws-region: us-east-1
+          role-session-name: github-oidc-session
+
+      - name: Install AWS CLI
+        run: |
+          echo "Installing AWS CLI..."
+          sudo apt-get install -y awscli
+
+      - name: Upload PDF to S3
+        if: github.ref_name == 'main'
+        run: |
+          echo "Uploading PDF to S3..."
+          aws s3 cp ${{ env.BASE_NAME }}.pdf s3://${{ env.S3_BUCKET }}/${{ env.BASE_NAME }}.pdf
+          echo "Upload completed."
