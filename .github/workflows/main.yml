@@ -2,7 +2,7 @@ name: Build and Deploy Resume
 on:
   push:
     branches:
-      - general
+      - mobile
 
 env:
   BASE_NAME: Nicholas_Tietje_Resume
