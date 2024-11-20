@@ -135,10 +135,8 @@
       {Master of Science in Computer Science}{Expected May 2026}
       {Bachelor of Science in Computer Science and Chemical Engineering}{Expected May 2025}
       \resumeItemListStart
-            % \resumeItem{\textbf{GPA:} 3.8/4.0}
             \resumeItem{\textbf{Activities \& Honors:} GPA 3.8/4.0, ChemE Car, CoMoChEng, AIChE, NUAGE, Dean's List, Dean's Scholar}
             \resumeItem{\textbf{Relevant Coursework:} Foundations of Software Engineering, Software Development, Mobile Application Development, Object Oriented Design, Algorithms \& Data, Database Design, Fundamentals of Computer Science I \& II}
-            % Thermodynamics I \& II, Transport Processes I \& II, Physics II, Conservation Principles of Chemical Engineering, 
       \resumeItemListEnd
       \vspace{1pt}
   \resumeSubHeadingListEnd
@@ -148,13 +146,22 @@
 \section{\textbf{Internship Experience}}
   \resumeSubHeadingListStart
 
-\resumeSubheading
-      {Software Engineer Intern}{Boston, MA}
-      {State Street}{Jul 2024 -- Present}
+    \resumeSubheading
+      {Software Engineer Intern \tab[0.4cm] \href{https://github.com/NUSpecialProjects/khoury-classroom-plugin}{\raisebox{-0.05\height}\faGithub \tab[0.05cm] Github}}{Boston, MA}
+      {Northeastern University}{Oct 2024 -- Present}
       \resumeItemListStart
-        \resumeItem{Architected and implemented a scalable notification management system as a full-stack SaaS product for State Street, enhancing communication efficiency of 3000+ users across multiple departments}
+        \resumeItem{Developed a GitHub-integrated educational platform to support automated grading, assignment management, and analytics}
+        \resumeItem{Architected multi-tenant back-end in Go, creating RESTful endpoints for classroom creation and management workflows}
+        \resumeItem{Engineered classroom creation workflow with role-based access control and secure, time-sensitive invite links, streamlining course setup and student onboarding}
+      \resumeItemListEnd
+    \vspace{1pt}
+
+    \resumeSubheading
+      {Software Engineer Intern}{Boston, MA}
+      {State Street}{Jul 2024 -- Sept 2024}
+      \resumeItemListStart
+        \resumeItem{Architected a scalable notification management system as a full-stack SaaS product for State Street, enhancing communication efficiency of 3000+ users across multiple departments}
         \resumeItem{Collaborated with cross-functional teams to gather requirements, ensuring alignment with diverse user needs and strict financial industry compliance standards}
-    
       \resumeItemListEnd
     \vspace{1pt}
     
@@ -173,17 +180,6 @@
 
 \section{\textbf{Campus Experience}}
   \resumeSubHeadingListStart
-
-  % \resumeSubheading
-  %     {Reaction Mechanism Generator (RMG-Py) \tab[0.5cm] \href{https://github.com/ntietje1/RMG-Py}{\raisebox{-0.05\height}\faGithub \tab[0.05cm] Github} \tab[0.5cm] \href{https://rmg.mit.edu/}{\raisebox{-0.05\height}\faGlobeAmericas \tab[0.05cm] Website}}{}
-  %     {Python, Anaconda, Docker, Linux, Pytest}{}
-  %     \resumeItemListStart
-  %       \resumeItem{Contributed to \textbf{open-source scientific software} as part of Computational Modeling in Chemical Engineering at Northeastern (CoMoChEng) by implementing code optimizations and feature development}
-  %       \resumeItem{Led \textbf{migration of output file format to YAML}, improving cross-application interoperability}
-  %       \resumeItem{Optimized data processing pipelines, achieving up to \textbf{50\% reduction in execution time} through efficient string templating and file I/O operations}
-  %     \resumeItemListEnd
-
-  %       \vspace{2pt}
 
 \resumeSubheading
       {Undergraduate Researcher}{Boston, MA}
@@ -209,7 +205,7 @@
       {Northeastern University}{Sep 2022 -- May 2023}
       \resumeItemListStart
         \resumeItem{Guided 200+ students in C++ programming and electrical prototyping for the Cornerstone of Engineering course}
-        \resumeItem{Managed and maintained advanced fabrication equipment including 3D printers, laser-cutters, and woodworking machinery}
+        % \resumeItem{Managed and maintained advanced fabrication equipment including 3D printers, laser-cutters, and woodworking machinery}
       \resumeItemListEnd
     \vspace{1pt}
 \resumeSubHeadingListEnd
@@ -231,10 +227,10 @@
 
     \resumeSubheading
       {Huskerly: A Real-Time Messaging App \tab[0.5cm] \href{https://github.com/kennybc/huskerly-microservices}{\raisebox{-0.05\height}\faGithub \tab[0.05cm] Github (Back End)} \tab[0.5cm] \href{https://github.com/nandini-ghosh/huskerly-react-app}{\raisebox{-0.05\height}\faGithub \tab[0.05cm] Github (Front End)}}{}
-      {Python, Javascript, React, RESTful APIs, Websockets, MySQL, Terraform, Kubernetes, EKS, RDS, DynamoDB, S3}{}
+      {Python, Javascript, React, RESTful APIs, Microservices, Websockets, MySQL, Terraform, RDS, DynamoDB, S3}{}
       \resumeItemListStart
-        \resumeItem{Architected and developed a feature-rich real-time messaging platform with organization management, channels, direct messaging, and OAuth 2.0 authentication}
-        \resumeItem{Designed and deployed a microservice-based cloud application with Kubernetes on AWS EKS to efficiently handle varying workloads and ensure high availability and reliability}
+        \resumeItem{Developed and deployed a feature-rich real-time messaging platform with organization management, channels, direct messaging, and OAuth 2.0 authentication to AWS}
+        % \resumeItem{Designed and deployed a microservice-based cloud application with Kubernetes on AWS EKS to efficiently handle varying workloads and ensure high availability and reliability}
       \vspace{1pt}
       \resumeItemListEnd
   \resumeSubHeadingListEnd
@@ -244,23 +240,23 @@
 \section{\textbf{Technical Skills}}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-     \textbf{Programming Languages:} \tab[1.98cm] {Kotlin, Java, Python, JavaScript, C++, SQL, PostgreSQL} \\
+     \textbf{Programming Languages:} \tab[1.98cm] {Kotlin, Java, Go, Python, JavaScript, SQL, PostgreSQL, HTML, CSS} \\
      \vspace{3pt}
      \textbf{Tools/Frameworks:} \tab[2.975cm] {Git, Github Actions, Docker, Kubernetes, Express, MongoDB, React, Gradle, REST APIs} \\
      \vspace{3pt}
-     \textbf{Cloud Technologies:} \tab[2.85cm] {AWS (EC2, RDS, EKS, S3, DynamoDB, Lambda, IAM, Cognito, API Gateway), Terraform} \\
+     \textbf{Cloud Technologies:} \tab[2.85cm] {AWS (RDS, S3, DynamoDB, Lambda, IAM, Cognito, API Gateway), Terraform} \\
      \vspace{1pt}
     }}
  \end{itemize}
  
-\section{\textbf{Interests}}
-\begin{itemize}[leftmargin=0.15in, label={}]
-\item{
-    \resumeItemListStart
-        \resumeItem{Magic: The Gathering, Kotlin, Reading (Sci-fi \& Fantasy), Board Games, Learning Spanish (700 day streak on Duolingo!)}
-    \resumeItemListEnd
-}
-\end{itemize}
+% \section{\textbf{Interests}}
+% \begin{itemize}[leftmargin=0.15in, label={}]
+% \item{
+%     \resumeItemListStart
+        % \resumeItem{Magic: The Gathering, Kotlin, Reading (Sci-fi \& Fantasy), Board Games, Learning Spanish (700 day streak on Duolingo!)}
+%     \resumeItemListEnd
+% }
+% \end{itemize}
 
 %-------------------------------------------
 \end{document}
