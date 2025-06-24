@@ -47,7 +47,7 @@ jobs:
           echo "Image generated: ${{ env.BASE_NAME }}.png"
 
       - name: Upload PDF as an artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: resume-pdf
           path: |
